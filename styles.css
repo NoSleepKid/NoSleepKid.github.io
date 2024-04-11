@@ -1,25 +1,30 @@
-/* Add custom styles for the header and button */
-body {
-    background-image: url('bg.png'); /* Set background image */
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #333; /* Dark background color */
-    color: #fff; /* Text color */
-    font-family: 'Mainfont', sans-serif; /* Apply custom font */
+    background-color: #333;
+    color: #fff;
+    font-family: 'Mainfont', sans-serif;
+    padding: 20px;
+    text-align: center;
 }
 
-.testing-btn {
-    background-color: red; /* Set button background color to red */
-    color: white; /* Set button text color to white */
+.back-btn {
+    background-color: #4CAF50;
     border: none;
+    color: white;
     padding: 10px 20px;
-    font-family: 'Mainfont', sans-serif; /* Apply custom font */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
     cursor: pointer;
+}
+
+.funny-content {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.funny-content img {
+    width: 300px;
+    margin-bottom: 20px;
 }
