@@ -1,0 +1,25 @@
+/* Add custom styles for the header and button */
+body {
+    background-image: url('bg.png'); /* Set background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Text color */
+    font-family: 'Mainfont', sans-serif; /* Apply custom font */
+}
+
+.testing-btn {
+    background-color: red; /* Set button background color to red */
+    color: white; /* Set button text color to white */
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Mainfont', sans-serif; /* Apply custom font */
+    cursor: pointer;
+}
