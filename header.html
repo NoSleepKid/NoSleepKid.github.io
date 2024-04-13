@@ -7,16 +7,29 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mainfont&display=swap">
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Mainfont', sans-serif;
+        }
+
         .header {
             background-color: #333;
             color: #fff;
-            font-family: 'Mainfont', sans-serif;
             padding: 20px;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .main-content {
+        .title {
+            font-size: 20px;
+            font-weight: bold;
             cursor: pointer;
+        }
+
+        .button-container {
+            margin-left: auto;
         }
 
         .testing-btn {
@@ -26,9 +39,7 @@
             padding: 10px 20px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
             font-size: 16px;
-            margin-top: 20px;
             cursor: pointer;
         }
     </style>
@@ -36,8 +47,10 @@
 <body>
     <!-- Include header -->
     <div class="header">
-        <div class="main-content" onclick="window.location.href = 'https://Nosleepkid.github.io';">NoSleepKid.io</div>
-        <button class="testing-btn" onclick="window.location.href = 'gamenet.html';">GameNet</button>
+        <div class="title" onclick="window.location.href = 'https://Nosleepkid.github.io';">NoSleepKid.io</div>
+        <div class="button-container">
+            <button class="testing-btn" onclick="window.location.href = 'gamenet.html';">GameNet</button>
+        </div>
     </div>
 </body>
 </html>
