@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page - NoSleepKid.io</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mainfont&display=swap">
+    <style>
+        body {
+            background-image: url('bg.png');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            font-family: 'Mainfont', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main content of main.html -->
+    <div style="display: flex; justify-content: center;">
+        <a id="downloadLink" class="download-btn" href="latestVer.zip" download>Download Will Happen Shortly.</a>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            var downloadLink = document.getElementById('downloadLink');
+            downloadLink.click(); // Trigger the download after 2 seconds
+        }, 2000);
+
+        // Redirect to index.html once download is complete
+        document.getElementById('downloadLink').addEventListener('click', function() {
+            setTimeout(function() {
+                window.location.href = 'index.html';
+            }, 100); // Wait for a very short time before redirecting
+        });
+    </script>
+</body>
+</html>
