@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page - NoSleepKid.io</title>
+    <title>TRG AntiCheat</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mainfont&display=swap">
     <style>
@@ -14,17 +14,10 @@
             padding: 0;
             font-family: 'Mainfont', sans-serif;
         }
-                @font-face {
-            font-family: 'Damifontcolour-Regular';
-            src: url('Damifontcolour-Regular.ttf') format('truetype');
-        }
 
-        body {
-            background-image: url('bg.png');
-            background-size: cover;
-            margin: 0;
-            padding: 0;
-            font-family: 'Damifontcolour-Regular', sans-serif;
+        @font-face {
+            font-family: 'Avalon';
+            src: url('Avalon.ttf') format('truetype');
         }
 
         .header {
@@ -45,20 +38,27 @@
             font-size: 20px;
         }
 
-        .testing-btn {
-            background-color: #4CAF50;
-            border: none;
+        .testing-text {
             color: white;
-            padding: 10px 20px;
+            padding: 20px 30px;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            font-size: 16px;
+            font-size: 40px;
             margin-top: 20px;
             cursor: pointer;
+            position: absolute;
+            top: 38%; /* Adjust as needed */
+            left: 50%; /* Adjust as needed */
+            transform: translate(-50%, -50%);
+            font-family: 'Avalon', sans-serif; /* Specify Damifontcolour-Regular font */
         }
 
-        /* New button style */
+        .loading-gif {
+            display: block;
+            margin: auto;
+        }
+
         .download-btn {
             background-image: url('btn.png');
             background-size: cover;
@@ -77,14 +77,30 @@
     </style>
 </head>
 <body>
-    <!-- Include header -->
-    <div class="header">
-        <div class="main-content" onclick="window.location.href = 'https://nosleepkid.github.io';">NoSleepKid.io</div>
-        <button class="testing-btn" onclick="window.location.href = 'https://nosleepkid.github.io/GameNet';">GameNet</button>
-    </div>
     <!-- Main content of main.html -->
+    <div class="testing-text">The Anti-Cheat Will Be Handled In The Game Client</div>
+    <!-- GIF -->
+    <img class="loading-gif" src="Loading.gif" alt="Loading...">
     <!-- New button -->
     <div style="display: flex; justify-content: center;">
     </div>
+    <script>
+        function SayHi() {
+            alert('This is a test alert');
+        }
+
+        function VerifyPlayerSpeed(speed) {
+            if (speed > 55)
+            {
+                alert('CHEATINGPLAYERSPEED');
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'g' || event.key === 'G') {
+                SayHi();
+            }
+        });
+    </script>
 </body>
 </html>
