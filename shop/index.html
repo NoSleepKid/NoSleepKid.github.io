@@ -49,18 +49,24 @@
             object-fit: cover;
         }
         .buy-button {
-            background: #ff9900;
+            background: linear-gradient(145deg, #ff9900, #ff7f00);
             border: none;
             color: white;
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 12px 25px;
+            font-size: 18px;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 25px;
+            box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2), -3px -3px 6px rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease-in-out;
         }
         .buy-button:hover {
-            background: #e68a00;
+            background: linear-gradient(145deg, #e68a00, #ff9900);
             transform: scale(1.1);
+            box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3), -3px -3px 6px rgba(255, 255, 255, 0.3);
+        }
+        .buy-button:active {
+            background: linear-gradient(145deg, #ff7f00, #ff9900);
+            transform: scale(0.98);
         }
         #productView {
             position: fixed;
