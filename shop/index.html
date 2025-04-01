@@ -73,6 +73,23 @@
             transform: scale(1.05);
         }
     </style>
+    <script>
+        function viewProduct(name, price, desc, image) {
+            document.getElementById('productView').innerHTML = `
+                <h2>${name}</h2>
+                <img src="${image}" alt="${name}" onerror="this.style.background='red'; this.innerHTML='Offline';">
+                <p>${desc}</p>
+                <p><strong>$${price}</strong></p>
+                <button class="buy-button">Buy Now</button>
+                <br><br>
+                <button onclick="closeView()">Close</button>
+            `;
+            document.getElementById('productView').style.display = 'block';
+        }
+        function closeView() {
+            document.getElementById('productView').style.display = 'none';
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -81,24 +98,22 @@
     </header>
     <div class="content">
         <h1>Our Products</h1>
-        <div class="product">
-            <img src="product1.jpg" alt="Product 1" onerror="this.onerror=null; this.src=''; this.style.background='red'; this.innerHTML='Offline';">
+        <div class="product" onclick="viewProduct('Product 1', '19.99', 'This is an awesome product.', 'product1.jpg')">
+            <img src="product1.jpg" alt="Product 1" onerror="this.style.background='red'; this.innerHTML='Offline';">
             <h2>Product 1</h2>
             <p>$19.99</p>
-            <button class="buy-button">Buy Now</button>
         </div>
-        <div class="product">
-            <img src="product2.jpg" alt="Product 2" onerror="this.onerror=null; this.src=''; this.style.background='red'; this.innerHTML='Offline';">
+        <div class="product" onclick="viewProduct('Product 2', '29.99', 'This is another great item.', 'product2.jpg')">
+            <img src="product2.jpg" alt="Product 2" onerror="this.style.background='red'; this.innerHTML='Offline';">
             <h2>Product 2</h2>
             <p>$29.99</p>
-            <button class="buy-button">Buy Now</button>
         </div>
-        <div class="product">
-            <img src="product3.jpg" alt="Product 3" onerror="this.onerror=null; this.src=''; this.style.background='red'; this.innerHTML='Offline';">
+        <div class="product" onclick="viewProduct('Product 3', '39.99', 'A premium quality product.', 'product3.jpg')">
+            <img src="product3.jpg" alt="Product 3" onerror="this.style.background='red'; this.innerHTML='Offline';">
             <h2>Product 3</h2>
             <p>$39.99</p>
-            <button class="buy-button">Buy Now</button>
         </div>
     </div>
+    <div id="productView" class="content" style="display: none;"></div>
 </body>
 </html>
