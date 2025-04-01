@@ -68,6 +68,26 @@
             background: linear-gradient(145deg, #ff7f00, #ff9900);
             transform: scale(0.98);
         }
+        /* Round buttons for Back and Close */
+        .round-button {
+            background-color: #232f3e;
+            color: white;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        .round-button:hover {
+            background-color: #1e2531;
+            transform: scale(1.1);
+        }
+        .round-button:active {
+            background-color: #182036;
+            transform: scale(0.98);
+        }
         #productView {
             position: fixed;
             top: 50%;
@@ -99,7 +119,7 @@
                 <img src="1ksssc.png" onerror="this.src='fallback.png'; this.style.background='red'; this.style.color='white'; this.innerText='OFFLINE';" alt="Sleep's Scary 1,000 Scary Coins">
                 <p>Get 1,000 Scary Coins to spend in Sleep's haunted adventures.</p>
                 <p><strong>$4.99</strong></p>
-                <button onclick="closeView()">Close</button>
+                <button onclick="closeView()" class="round-button">Close</button>
             `;
             view.style.display = 'block';
             view.style.transform = 'translate(-50%, -50%) scale(1)';
@@ -113,7 +133,7 @@
 </head>
 <body>
     <header>
-        <button onclick="window.location.href='https://nukstudios.xyz'">Back</button>
+        <button onclick="window.location.href='https://nukstudios.xyz'" class="round-button">Back</button>
         <h1>Shop</h1>
     </header>
     <div class="container">
