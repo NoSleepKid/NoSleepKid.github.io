@@ -9,57 +9,48 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle, #000000, #1a1a1a);
-            color: white;
-            text-align: center;
+            background: #f3f3f3;
+            color: #333;
+            overflow-x: hidden;
         }
         header {
-            background: #1e1e1e;
-            padding: 20px;
-            font-size: 28px;
-            font-weight: bold;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            background: #232f3e;
+            color: white;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
-        .content {
-            margin-top: 50px;
+        .container {
+            max-width: 1200px;
+            margin: auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            display: inline-block;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            text-align: center;
         }
         .product {
-            display: inline-block;
-            background: #222;
+            background: white;
+            padding: 15px;
             border-radius: 10px;
-            padding: 20px;
-            margin: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-            max-width: 250px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 250px;
+            margin: auto;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .product:hover {
+            transform: scale(1.05);
         }
         .product img {
             width: 100%;
             border-radius: 5px;
-        }
-        .product img[onerror] {
-            background: red;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            height: 150px;
+            height: auto;
+            object-fit: cover;
         }
         .buy-button {
-            background: #333;
-            border: 2px solid #444;
+            background: #ff9900;
+            border: none;
             color: white;
             padding: 10px 20px;
             font-size: 16px;
@@ -68,52 +59,66 @@
             transition: all 0.3s ease-in-out;
         }
         .buy-button:hover {
-            background: #555;
-            border-color: #666;
-            transform: scale(1.05);
+            background: #e68a00;
+            transform: scale(1.1);
+        }
+        #productView {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: none;
+            max-width: 400px;
+            text-align: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        #productView img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
     <script>
-        function viewProduct(name, price, desc, image) {
-            document.getElementById('productView').innerHTML = `
-                <h2>${name}</h2>
-                <img src="${image}" alt="${name}" onerror="this.style.background='red'; this.innerHTML='Offline';">
-                <p>${desc}</p>
-                <p><strong>$${price}</strong></p>
-                <button class="buy-button">Buy Now</button>
-                <br><br>
+        function viewProduct() {
+            let view = document.getElementById('productView');
+            view.innerHTML = `
+                <h2>Sleep's Scary 1,000 Scary Coins</h2>
+                <img src="1ksssc.png" onerror="this.src='fallback.png'; this.style.background='red'; this.style.color='white'; this.innerText='OFFLINE';" alt="Sleep's Scary 1,000 Scary Coins">
+                <p>Get 1,000 Scary Coins to spend in Sleep's haunted adventures.</p>
+                <p><strong>$4.99</strong></p>
                 <button onclick="closeView()">Close</button>
             `;
-            document.getElementById('productView').style.display = 'block';
+            view.style.display = 'block';
+            view.style.transform = 'translate(-50%, -50%) scale(1)';
         }
         function closeView() {
-            document.getElementById('productView').style.display = 'none';
+            let view = document.getElementById('productView');
+            view.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            setTimeout(() => view.style.display = 'none', 200);
         }
     </script>
 </head>
 <body>
     <header>
         <button onclick="window.location.href='https://nukstudios.xyz'">Back</button>
-        <span>Shop</span>
+        <h1>Shop</h1>
     </header>
-    <div class="content">
-        <h1>Our Products</h1>
-        <div class="product" onclick="viewProduct('Product 1', '19.99', 'This is an awesome product.', 'product1.jpg')">
-            <img src="product1.jpg" alt="Product 1" onerror="this.style.background='red'; this.innerHTML='Offline';">
-            <h2>Product 1</h2>
-            <p>$19.99</p>
-        </div>
-        <div class="product" onclick="viewProduct('Product 2', '29.99', 'This is another great item.', 'product2.jpg')">
-            <img src="product2.jpg" alt="Product 2" onerror="this.style.background='red'; this.innerHTML='Offline';">
-            <h2>Product 2</h2>
-            <p>$29.99</p>
-        </div>
-        <div class="product" onclick="viewProduct('Product 3', '39.99', 'A premium quality product.', 'product3.jpg')">
-            <img src="product3.jpg" alt="Product 3" onerror="this.style.background='red'; this.innerHTML='Offline';">
-            <h2>Product 3</h2>
-            <p>$39.99</p>
+    <div class="container">
+        <h1>Our Items: Digital And Physical</h1>
+        <div class="product" onclick="viewProduct()">
+            <img src="1ksssc.png" onerror="this.src='fallback.png'; this.style.background='red'; this.style.color='white'; this.innerText='OFFLINE';" alt="Sleep's Scary 1,000 Scary Coins">
+            <h2>Sleep's Scary 1,000 Scary Coins</h2>
+            <p>$4.99</p>
+            <button class="buy-button">View Product</button>
         </div>
     </div>
-    <div id="productView" class="content" style="display: none;"></div>
+    <div id="productView"></div>
 </body>
 </html>
