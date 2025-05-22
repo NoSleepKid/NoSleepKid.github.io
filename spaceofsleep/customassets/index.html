@@ -1,54 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Found</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #1a1a1a;
-            color: white;
-        }
-        h1 {
-            font-size: 80px;
-            color: #ff5555;
-            margin: 0;
-        }
-        p {
-            font-size: 22px;
-            margin: 10px 0;
-        }
-        a {
-            color: #ffcc00;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Space Of Sleep - Custom Assets</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0d0d0d, #1a1a2e);
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 30px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom: 2px solid #444;
+      animation: fadeInDown 1s ease;
+    }
+
+    header img {
+      width: 120px;
+      height: auto;
+      margin-bottom: 10px;
+      animation: pulse 2s infinite;
+    }
+
+    header h1 {
+      margin: 10px 0 5px;
+      font-size: 2.5rem;
+      color: #00ffff;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: #aaa;
+    }
+
+    .content {
+      padding: 50px 20px;
+      animation: fadeInUp 1s ease;
+    }
+
+    .content h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .content p {
+      max-width: 600px;
+      margin: auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    .upload-button {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background: #00ffff;
+      border: none;
+      color: #000;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      text-decoration: none;
+      animation: bounceIn 1.2s ease;
+    }
+
+    .upload-button:hover {
+      background: #00cccc;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.9); opacity: 0; }
+      60% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>404</h1>
-        <p>Oops! The page you’re looking for exists.</p>
-        <p><a href="/">Go back home</a></p>
-    </div>
-    <script>
-        setTimeout(function() {
-            window.location.href = "/";
-        }, 5000); // Redirects after 5 seconds
-    </script>
+  <header>
+    <img src="spaceofsleeplogo.png" alt="Space Of Sleep Logo" />
+    <h1>Space Of Sleep: Custom Assets</h1>
+    <p>Create. Upload. Share your imagination.</p>
+  </header>
+
+  <div class="content">
+    <h2>What is This?</h2>
+    <p>
+      This is the hub for creating and uploading your own custom assets
+      for Space Of Sleep. Whether you're designing creepy characters, 
+      chilling audio, or bizarre objects — your creativity can now live in our world.
+    </p>
+
+    <h2>How Does It Work?</h2>
+    <p>
+      Just click the button below, fill out the form, upload your asset files, 
+      and they’ll be stored on our official servers. Players can use your creations in-game!
+    </p>
+
+    <a class="upload-button" href="https://nukstudios.xyz/spaceofsleep/customassets/uploadasset.html">
+      Upload My Own Asset
+    </a>
+  </div>
+
+  <footer>
+    &copy; 2025 Nuk Studios – Space Of Sleep. All rights reserved.
+  </footer>
 </body>
 </html>
