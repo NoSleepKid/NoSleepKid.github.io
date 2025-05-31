@@ -1,0 +1,3 @@
+name = "nukstudios"
+main = "src/index.ts"
+compatibility_date = "2025-05-31"
