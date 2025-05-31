@@ -1,0 +1,489 @@
+git push --force
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Upload Custom Asset - Space Of Sleep</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0d0d0d, #1a1a2e);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            animation: fadeIn 1.8s ease;
+        }
+
+        header {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+            header h1 {
+                color: #00ffff;
+                font-size: 2.8rem;
+                margin-bottom: 8px;
+                animation: pulse 2s infinite;
+            }
+
+            header p {
+                color: #aaa;
+                font-size: 1.1rem;
+                margin-top: 0;
+                margin-bottom: 20px;
+            }
+
+        #progressBarContainer {
+            width: 360px;
+            height: 8px;
+            background: #222a40;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px #00ffff55 inset;
+        }
+
+        #progressBar {
+            height: 100%;
+            width: 0%;
+            background: #00ffff;
+            border-radius: 8px;
+            transition: width 0.4s ease;
+        }
+
+        form, #successScreen {
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px 40px;
+            width: 360px;
+            box-shadow: 0 0 25px #00ffff55;
+            animation: fadeInUp 1s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 320px;
+        }
+
+        .step {
+            display: none;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+            .step.active {
+                display: block;
+            }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #00ffffcc;
+        }
+
+        select, input[type=text], input[type=file] {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 8px;
+            background: #111a2c;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: box-shadow 0.3s ease;
+        }
+
+            select:focus, input[type=text]:focus, input[type=file]:focus {
+                box-shadow: 0 0 10px #00ffffcc;
+            }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 12px 22px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 0 15px #00ffffaa;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+            button:disabled {
+                cursor: default;
+                opacity: 0.5;
+                box-shadow: none;
+            }
+
+            button.next {
+                background: #00ffff;
+                color: #000;
+            }
+
+                button.next:hover:not(:disabled) {
+                    background: #00cccc;
+                    transform: scale(1.05);
+                    box-shadow: 0 0 20px #00ccccdd;
+                }
+
+            button.back {
+                background: #111a2c;
+                color: #00ffff;
+            }
+
+                button.back:hover:not(:disabled) {
+                    background: #002222;
+                    transform: scale(1.05);
+                }
+
+        .note {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: -15px;
+            margin-bottom: 15px;
+        }
+
+        #uploadStatus {
+            margin-top: 15px;
+            font-weight: 700;
+            text-align: center;
+            min-height: 24px;
+        }
+
+            #uploadStatus.error {
+                color: #f00;
+                text-shadow: 0 0 8px #f00;
+            }
+
+        #assetFile.dragover {
+            border: 3px dashed #00ffff;
+            background: #003344;
+            box-shadow: 0 0 25px #00ffffaa;
+        }
+
+        #successScreen {
+            display: none;
+            text-align: center;
+            color: #0f0;
+            text-shadow: 0 0 8px #0f0, 0 0 20px #0f0;
+        }
+
+            #successScreen h2 {
+                margin-bottom: 15px;
+            }
+
+            #successScreen p {
+                font-size: 1.1rem;
+                margin-bottom: 25px;
+            }
+
+            #successScreen button {
+                background: #00ffff;
+                color: #000;
+                padding: 14px 28px;
+                font-size: 1.2rem;
+                border-radius: 16px;
+                box-shadow: 0 0 25px #00ffffcc;
+            }
+
+                #successScreen button:hover {
+                    background: #00cccc;
+                    box-shadow: 0 0 30px #00ccccdd;
+                    transform: scale(1.05);
+                }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Upload Your Custom Asset</h1>
+        <p>3 simple steps to share your asset.</p>
+    </header>
+
+    <div id="progressBarContainer">
+        <div id="progressBar"></div>
+    </div>
+
+    <form id="uploadForm" novalidate>
+
+        <!-- Step 1: Asset Type -->
+        <div class="step active" id="step1">
+            <label for="assetType">Asset Type</label>
+            <select id="assetType" name="assetType" required>
+                <option value="" disabled selected>Select Type</option>
+                <option value="mesh">Mesh/Model (.obj)</option>
+                <option value="image">Image (.png)</option>
+            </select>
+        </div>
+
+        <!-- Step 2: Asset Name -->
+        <div class="step" id="step2">
+            <label for="assetName">Asset Name</label>
+            <input type="text" id="assetName" name="assetName" placeholder="Enter asset name" required maxlength="50" />
+        </div>
+
+        <!-- Step 3: File upload -->
+        <div class="step" id="step3">
+            <label for="assetFile">Upload File</label>
+            <input type="file" id="assetFile" name="assetFile" required />
+            <div class="note" id="fileNote">Allowed: .obj for Mesh, .png for Image</div>
+        </div>
+
+        <div class="buttons" style="margin-top: 10px;">
+            <button type="button" class="back" id="backBtn" disabled>Back</button>
+            <button type="button" class="next" id="nextBtn">Next</button>
+        </div>
+
+        <div id="uploadStatus"></div>
+    </form>
+
+    <div id="successScreen">
+        <h2>Upload Successful!</h2>
+        <p>Your Asset ID is:</p>
+        <code id="assetIdDisplay" style="font-size:1.4rem; color:#0ff;"></code>
+        <br />
+        <button id="uploadMoreBtn">Upload Another Asset</button>
+    </div>
+
+    <script>
+  // ==== CONFIG ====
+  const GITHUB_OWNER = "NoSleepKid";
+  const GITHUB_REPO = "NoSleepKid.github.io";
+  const GITHUB_BRANCH = "main";  // adjust if your default branch is different
+  const GITHUB_FOLDER = "customassets";
+  const GITHUB_TOKEN = "";
+
+  // ==== UI & Logic ====
+  const steps = document.querySelectorAll('.step');
+  const nextBtn = document.getElementById('nextBtn');
+  const backBtn = document.getElementById('backBtn');
+  const progressBar = document.getElementById('progressBar');
+  const uploadStatus = document.getElementById('uploadStatus');
+
+  const uploadForm = document.getElementById('uploadForm');
+  const successScreen = document.getElementById('successScreen');
+  const assetIdDisplay = document.getElementById('assetIdDisplay');
+  const uploadMoreBtn = document.getElementById('uploadMoreBtn');
+
+  let currentStep = 0;
+
+  const assetType = document.getElementById('assetType');
+  const assetName = document.getElementById('assetName');
+  const assetFile = document.getElementById('assetFile');
+  const fileNote = document.getElementById('fileNote');
+
+  function showStep(index) {
+    steps.forEach((step, i) => {
+      step.classList.toggle('active', i === index);
+    });
+    backBtn.disabled = index === 0;
+    nextBtn.textContent = (index === steps.length - 1) ? 'Upload' : 'Next';
+
+    // Update progress bar
+    const progressPercent = ((index) / (steps.length - 1)) * 100;
+    progressBar.style.width = progressPercent + '%';
+
+    // Update file accept only on step 3
+    if(index === 2) {
+      if(assetType.value === 'mesh') {
+        assetFile.accept = '.obj';
+        fileNote.textContent = "Allowed: .obj file only for Mesh/Model";
+      } else if(assetType.value === 'image') {
+        assetFile.accept = '.png';
+        fileNote.textContent = "Allowed: .png file only for Image";
+      } else {
+        assetFile.accept = '';
+        fileNote.textContent = "Uploading this type is not supported yet.";
+      }
+      assetFile.value = '';
+    }
+    uploadStatus.textContent = '';
+    uploadStatus.className = '';
+  }
+
+  function validateStep(stepIndex) {
+    const inputs = steps[stepIndex].querySelectorAll('input, select');
+    for (const input of inputs) {
+      if(!input.checkValidity()) return false;
+    }
+    // Extra validation: file extension on step 3
+    if(stepIndex === 2) {
+      if(assetFile.files.length === 0) return false;
+      const fileName = assetFile.files[0].name.toLowerCase();
+      if(assetType.value === 'mesh' && !fileName.endsWith('.obj')) return false;
+      if(assetType.value === 'image' && !fileName.endsWith('.png')) return false;
+    }
+    return true;
+  }
+
+  nextBtn.addEventListener('click', async () => {
+    if(!validateStep(currentStep)) {
+      uploadStatus.textContent = "Please fill all required fields correctly.";
+      uploadStatus.className = 'error';
+      return;
+    }
+    uploadStatus.textContent = '';
+    uploadStatus.className = '';
+
+    if(currentStep < steps.length - 1) {
+      currentStep++;
+      showStep(currentStep);
+    } else {
+      // Upload file now
+      nextBtn.disabled = true;
+      backBtn.disabled = true;
+      assetType.disabled = true;
+      assetName.disabled = true;
+      assetFile.disabled = true;
+      uploadStatus.textContent = 'Uploading...';
+      uploadStatus.className = '';
+
+      const file = assetFile.files[0];
+      const reader = new FileReader();
+
+      // Generate 8 char random ID
+      function generateId(length = 8) {
+        const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let result = '';
+        for(let i=0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return result;
+      }
+
+      reader.onload = async () => {
+        const content = reader.result.split(',')[1]; // base64 content
+
+        // Build file path with 8-char ID
+        const uniqueId = generateId();
+        const filePath = `${GITHUB_FOLDER}/${assetType.value}/${assetName.value.trim()}_${uniqueId}_${file.name}`;
+
+        try {
+          // Check if file exists (get sha if update)
+          const getUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${filePath}`;
+          let sha = null;
+          const getResp = await fetch(getUrl, {
+            headers: {
+              Authorization: `token ${GITHUB_TOKEN}`,
+              Accept: 'application/vnd.github.v3+json'
+            }
+          });
+          if(getResp.status === 200) {
+            const json = await getResp.json();
+            sha = json.sha;
+          }
+
+          // Upload or update file
+          const putResp = await fetch(getUrl, {
+            method: 'PUT',
+            headers: {
+              Authorization: `token ${GITHUB_TOKEN}`,
+              Accept: 'application/vnd.github.v3+json'
+            },
+            body: JSON.stringify({
+              message: `Add/Update asset ${assetName.value} (${uniqueId})`,
+              content: content,
+              sha: sha
+            })
+          });
+
+          if(putResp.ok) {
+            // Show success screen
+            uploadForm.style.display = 'none';
+            successScreen.style.display = 'block';
+            assetIdDisplay.textContent = filePath;
+            progressBar.style.width = "100%";
+          } else {
+            const errorJson = await putResp.json();
+            uploadStatus.textContent = "Upload failed: " + (errorJson.message || putResp.statusText);
+            uploadStatus.className = 'error';
+            nextBtn.disabled = false;
+            backBtn.disabled = false;
+            assetType.disabled = false;
+            assetName.disabled = false;
+            assetFile.disabled = false;
+          }
+        } catch(err) {
+          uploadStatus.textContent = "Error: " + err.message;
+          uploadStatus.className = 'error';
+          nextBtn.disabled = false;
+          backBtn.disabled = false;
+          assetType.disabled = false;
+          assetName.disabled = false;
+          assetFile.disabled = false;
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  backBtn.addEventListener('click', () => {
+    if(currentStep > 0) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  });
+
+  uploadMoreBtn.addEventListener('click', () => {
+    // Reset form
+    uploadForm.reset();
+    assetType.disabled = false;
+    assetName.disabled = false;
+    assetFile.disabled = false;
+    currentStep = 0;
+    showStep(currentStep);
+    progressBar.style.width = "0%";
+    uploadStatus.textContent = '';
+    uploadStatus.className = '';
+
+    // Switch views
+    successScreen.style.display = 'none';
+    uploadForm.style.display = 'block';
+  });
+
+  showStep(currentStep);
+    </script>
+
+</body>
+</html>

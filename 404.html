@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #1a1a1a;
+            color: white;
+        }
+        h1 {
+            font-size: 80px;
+            color: #ff5555;
+            margin: 0;
+        }
+        p {
+            font-size: 22px;
+            margin: 10px 0;
+        }
+        a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <p>Oops! The page you’re looking for doesn’t exist.</p>
+        <p><a href="/">Go back home</a></p>
+    </div>
+    <script>
+        setTimeout(function() {
+            window.location.href = "/";
+        }, 5000); // Redirects after 5 seconds
+    </script>
+</body>
+</html>
