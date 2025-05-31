@@ -1,7 +1,6 @@
-// src/index.ts
 export default {
-  async fetch(request: Request): Promise<Response> {
-    return new Response("Hello from my Cloudflare Worker! 🎉", {
+  async fetch(request: Request) {
+    return new Response("hello from worker! 👋", {
       headers: { "content-type": "text/plain" },
     });
   },
