@@ -4,7 +4,7 @@ export default {
     let path = url.pathname;
 
     // Default to index.html
-    if (path === "/") path = "/index.html";
+    if (path === "/") path = "/home/index.html";
 
     // GitHub raw base URL: replace USER and REPO with your own
     const githubRawBase = "https://raw.githubusercontent.com/NoSleepKid/nukstudios/main";
