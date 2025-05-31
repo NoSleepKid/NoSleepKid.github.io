@@ -10,7 +10,7 @@ export default {
     if (path.startsWith("/")) path = path.slice(1);
 
     // Handle empty path => serve index.html at root
-    if (path === "") path = "index.html";
+    if (path === "") path = "home/index.html";
 
     // If path ends with slash, add index.html
     if (path.endsWith("/")) path += "index.html";
